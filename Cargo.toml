@@ -1,0 +1,7 @@
+[package]
+name = "zombogochi"
+version = "0.1.0"
+authors = ["Vesper77 <detros77@mail.ru>"]
+edition = "2018"
+
+[dependencies]
