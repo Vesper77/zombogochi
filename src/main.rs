@@ -1,25 +1,32 @@
 mod zombie;
+mod cmds;
 
-use zombie::zombie::Zombie;
-use zombie::stat;
+use zombie::zombie as zombie_mod;
+
+use std::io;
 
 fn main() {
 
-    let zombie = Zombie {
+    let zombie = zombie_mod::Zombie {
         name: "Serega".to_string(),
         ..Default::default()
     };
 
-    println!("--------------------");
+    zombie_mod::print_zombie(&zombie);
 
-    println!(
-        "Here is the new zombie: {}, and does it dead? {}",
-        zombie.name, zombie.is_dead
-    );
-    
-    println!("--------------------");
-    stat::print_stats(&zombie.stats);
-    println!("--------------------");
+    loop {
+        
+        let mut input = String::new();
 
+        let result = io::stdin().read_line(&mut input);
+
+        let trim_str = input.trim().to_string();
+
+        match result {
+            Ok(_) => cmds::exec_cmd(&trim_str, &zombie),
+            Err(err) => println!("ERROROROROROROROOR - {}", err)
+        }
+
+    }
 
 }

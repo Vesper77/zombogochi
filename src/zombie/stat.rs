@@ -53,13 +53,22 @@ impl StatDecription {
   }
 }
 
-pub fn get_default_stats() -> [Stat; 2] {
+//'static - https://doc.rust-lang.org/rust-by-example/scope/lifetime/static_lifetime.htmls
+pub fn get_default_stats() -> Vec<Stat> {
   let age_stat = StatType {
     val: 23,
     stat_descr: StatDecription {
       name: "Age".to_string(),
       descr: "Age of zombie".to_string(),
-    },
+    }
+  };
+
+  let hunger_stat = StatType {
+    val: 50,
+    stat_descr: StatDecription {
+      name: "Hunger".to_string(),
+      descr: "Hunger of zombie".to_string()
+    }
   };
 
   let str_stat = StatType {
@@ -70,7 +79,14 @@ pub fn get_default_stats() -> [Stat; 2] {
     },
   };
 
-  return [Stat::Int(age_stat), Stat::Str(str_stat)];
+  let mut stats_vec = Vec::new();
+
+  stats_vec.push(Stat::Int(age_stat));
+  stats_vec.push(Stat::Str(str_stat));
+  stats_vec.push(Stat::Int(hunger_stat));
+
+  return stats_vec;
+
 }
 
 pub fn get_stat_string_data(stat: &Stat) -> &StatToStringData {
