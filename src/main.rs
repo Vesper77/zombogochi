@@ -1,3 +1,6 @@
+mod zombie;
+
 fn main() {
-    println!("Zombies are coming!");
+    let zombie = zombie::Zombie{ name: "Serega".to_string() };
+    println!("Here is the new zombie: {}", zombie.name);
 }
