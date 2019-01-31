@@ -1,2 +1,2 @@
-pub use self::zombie::Zombie;
-mod zombie;
+pub mod zombie;
+pub mod stat;
